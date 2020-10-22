@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hangfire;
 
-namespace CronInterface
+namespace TNTManagerWebCronJobs
 {
     public interface IHangfireEmailJob
     {
-        [Queue("qa_emails")] //Specifies that the job only runs on this server's queue. The queue attribute must be in the interface, not the implementation.
+        [Queue("qa_emails")] //Specifies that the job only runs on this server's queue. The queue attribute must be in the interface, not the implementation
 
         Task<string> SendDailyReport();
 
-        Task<string> SendWeeklyReport();
-
         Task<string> SendReminders();
+
+        Task<string> SendWeeklyReport();
     }
 }
