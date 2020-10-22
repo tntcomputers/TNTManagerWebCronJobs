@@ -1,0 +1,8 @@
+D:\TNTManagerWebCronJobs\TNTManagerWebCronJobs\CronInterface\bin\Debug\netstandard2.0\CronInterface.deps.json
+D:\TNTManagerWebCronJobs\TNTManagerWebCronJobs\CronInterface\bin\Debug\netstandard2.0\CronInterface.dll
+D:\TNTManagerWebCronJobs\TNTManagerWebCronJobs\CronInterface\obj\Debug\netstandard2.0\CronInterface.AssemblyInfoInputs.cache
+D:\TNTManagerWebCronJobs\TNTManagerWebCronJobs\CronInterface\obj\Debug\netstandard2.0\CronInterface.AssemblyInfo.cs
+D:\TNTManagerWebCronJobs\TNTManagerWebCronJobs\CronInterface\bin\Debug\netstandard2.0\CronInterface.pdb
+D:\TNTManagerWebCronJobs\TNTManagerWebCronJobs\CronInterface\obj\Debug\netstandard2.0\CronInterface.csproj.CoreCompileInputs.cache
+D:\TNTManagerWebCronJobs\TNTManagerWebCronJobs\CronInterface\obj\Debug\netstandard2.0\CronInterface.dll
+D:\TNTManagerWebCronJobs\TNTManagerWebCronJobs\CronInterface\obj\Debug\netstandard2.0\CronInterface.pdb
