@@ -47,5 +47,13 @@ namespace TNTManagerWebCronJobs
             var response = ApiClient.PostAsync("api/TestReminders", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
         }
+
+        public async Task<string> SendAlerts()
+        {
+            InitializeHTTPClient();
+
+            var response = ApiClient.PostAsync("api/Alerts", new StringContent("")).Result;
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 }

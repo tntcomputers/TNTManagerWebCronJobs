@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using CronInterface;
 using Hangfire;
 using Owin;
 using System;
@@ -24,7 +23,7 @@ namespace TNTManagerWebCronJobs
                 .UseAutofacActivator(container);
 
             //This server only processes jobs from this queue
-            app.UseHangfireServer(new BackgroundJobServerOptions() { Queues = new string[] { "qa_emails" } });
+            app.UseHangfireServer(new BackgroundJobServerOptions() { Queues = new string[] { "emails" } });
 
 
             //GlobalConfiguration.Configuration.UseSimpleAssemblyNameTypeSerializer().UseRecommendedSerializerSettings().UseSqlServerStorage("TNTRegisConnectionString");
@@ -34,6 +33,8 @@ namespace TNTManagerWebCronJobs
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendDailyReport(), "0 7 * * 1-5", TimeZoneInfo.Local);
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendWeeklyReport(), "0 7 * * 1", TimeZoneInfo.Local);
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendReminders(), "0 * * * *", TimeZoneInfo.Local);
+
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendAlerts(), "2 0 * * *", TimeZoneInfo.Local);
         }
     }
 }
