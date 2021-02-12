@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -10,7 +11,7 @@ namespace TNTManagerWebCronJobs
 {
     public class RecurringTasks : IHangfireEmailJob
     {
-        public static string DEV_PATH { get; } = "http://dev.tntsoftware.ro/";
+        public static string DEV_PATH { get; } = "https://dev.tntsoftware.ro/";
 
         public static HttpClient ApiClient { get; set; }
 
@@ -20,7 +21,7 @@ namespace TNTManagerWebCronJobs
             ApiClient.BaseAddress = new Uri(DEV_PATH);
             ApiClient.DefaultRequestHeaders.Accept.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //ApiClient.DefaultRequestHeaders.Add("Authorization", apiKey);
+            ApiClient.DefaultRequestHeaders.Add("Authorization", "19693aa9131fbcee37dbbdd759b72a12");
             ApiClient.Timeout = TimeSpan.FromMinutes(3600);
         }
 
@@ -28,7 +29,26 @@ namespace TNTManagerWebCronJobs
         {
             InitializeHTTPClient();
 
-            var response = ApiClient.PostAsync("api/DailyReport", new StringContent("")).Result;
+            //using (SqlCommand cmd = new SqlCommand())
+            //{
+            //    cmd.Connection = new SqlConnection(ConfigurareConexiuneBD.CS);
+            //    cmd.Connection.Open();
+            //    cmd.CommandText = query;
+            //    //List<AlertaParametriValori> parametriValori = sablon.AlertaParametriValori.ToList();
+            //    //foreach (var p in tip.AlertaParametri)
+            //    //{
+            //    //    cmd.Parameters.AddWithValue(p.Denumire.Replace(' ', '_'), parametriValori.FirstOrDefault(valoare => valoare.ParametruId == p.Id).Valoare);
+            //    //}
+
+
+            //    SqlDataReader reader = cmd.ExecuteReader();
+            //    while (reader.Read())
+            //    { }
+            //}
+
+
+
+            var response = ApiClient.PostAsync("api/Hangfire/SendDailyReport", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
         }
 
@@ -36,7 +56,7 @@ namespace TNTManagerWebCronJobs
         {
             InitializeHTTPClient();
 
-            var response = ApiClient.PostAsync("api/WeeklyReport", new StringContent("")).Result;
+            var response = ApiClient.PostAsync("api/Hangfire/SendWeeklyReport", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
         }
 
@@ -44,7 +64,7 @@ namespace TNTManagerWebCronJobs
         {
             InitializeHTTPClient();
 
-            var response = ApiClient.PostAsync("api/TestReminders", new StringContent("")).Result;
+            var response = ApiClient.PostAsync("api/Hangfire/SendTestReminders", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
         }
 
@@ -52,7 +72,7 @@ namespace TNTManagerWebCronJobs
         {
             InitializeHTTPClient();
 
-            var response = ApiClient.PostAsync("api/Alerts", new StringContent("")).Result;
+            var response = ApiClient.PostAsync("api/Hangfire/SendAlerts", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
         }
     }

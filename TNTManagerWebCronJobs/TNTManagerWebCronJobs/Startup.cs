@@ -25,7 +25,6 @@ namespace TNTManagerWebCronJobs
             //This server only processes jobs from this queue
             app.UseHangfireServer(new BackgroundJobServerOptions() { Queues = new string[] { "emails" } });
 
-
             //GlobalConfiguration.Configuration.UseSimpleAssemblyNameTypeSerializer().UseRecommendedSerializerSettings().UseSqlServerStorage("TNTRegisConnectionString");
             app.UseHangfireDashboard();
 
