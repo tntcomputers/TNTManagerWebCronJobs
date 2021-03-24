@@ -23,5 +23,8 @@ namespace TNTManagerWebCronJobs
 
         [Queue("emails")]
         Task<string> SendMonthlyDocumentsReportSMS();
+
+        [Queue("emails")]
+        Task<string> SendMonthlyReportEmail();
     }
 }
