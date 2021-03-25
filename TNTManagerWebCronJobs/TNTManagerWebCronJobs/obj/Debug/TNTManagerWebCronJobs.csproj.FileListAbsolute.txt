@@ -193,7 +193,6 @@ E:\CronJob\TNTManagerWebCronJobs\TNTManagerWebCronJobs\bin\pt-BR\Hangfire.Core.r
 E:\CronJob\TNTManagerWebCronJobs\TNTManagerWebCronJobs\bin\pt-PT\Hangfire.Core.resources.dll
 E:\CronJob\TNTManagerWebCronJobs\TNTManagerWebCronJobs\bin\zh\Hangfire.Core.resources.dll
 E:\CronJob\TNTManagerWebCronJobs\TNTManagerWebCronJobs\bin\zh-TW\Hangfire.Core.resources.dll
-E:\CronJob\TNTManagerWebCronJobs\TNTManagerWebCronJobs\obj\Debug\TNTManagerWebCronJobs.csprojAssemblyReference.cache
 E:\CronJob\TNTManagerWebCronJobs\TNTManagerWebCronJobs\obj\Debug\TNTManagerWebCronJobs.csproj.CoreCompileInputs.cache
 E:\CronJob\TNTManagerWebCronJobs\TNTManagerWebCronJobs\obj\Debug\TNTManagerWebCronJobs.csproj.CopyComplete
 E:\CronJob\TNTManagerWebCronJobs\TNTManagerWebCronJobs\obj\Debug\TNTManagerWebCronJobs.dll
