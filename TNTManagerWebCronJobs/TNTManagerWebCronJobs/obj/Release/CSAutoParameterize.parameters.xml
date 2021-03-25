@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="TNTRegisConnectionString-Web.config Connection String" description="TNTRegisConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=vmtntsql2.westeurope.cloudapp.azure.com;Initial Catalog=TNTRegis;Persist Security Info=True;User ID=tntcomputers;Password=Traxdata13?; Connect Timeout=20000; Pooling='true'; MultipleActiveResultSets=True; Timeout = 10000; max pool size=10000;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\TNTManagerWebCronJobs\\TNTManagerWebCronJobs\\TNTManagerWebCronJobs\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TNTRegisConnectionString']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="E:\\CronJob\\TNTManagerWebCronJobs\\TNTManagerWebCronJobs\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TNTRegisConnectionString']/@connectionString" />
   </parameter>
 </parameters>
