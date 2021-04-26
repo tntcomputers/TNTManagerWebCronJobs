@@ -92,5 +92,13 @@ namespace TNTManagerWebCronJobs
             return await response.Content.ReadAsStringAsync();
 
         }
+
+        public async Task<string> ReserveDocuBoxLockers()
+        {
+            InitializeHTTPClient();
+
+            var response = ApiClient.PostAsync("api/Hangfire/ReserveLockersAsync", new StringContent("")).Result;
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 }

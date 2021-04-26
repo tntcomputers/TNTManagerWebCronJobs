@@ -26,5 +26,8 @@ namespace TNTManagerWebCronJobs
 
         [Queue("emails")]
         Task<string> SendMonthlyReportEmail();
+
+        [Queue("emails")]
+        Task<string> ReserveDocuBoxLockers();
     }
 }

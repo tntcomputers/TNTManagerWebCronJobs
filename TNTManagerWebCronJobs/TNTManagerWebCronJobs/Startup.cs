@@ -38,6 +38,8 @@ namespace TNTManagerWebCronJobs
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendMonthlyDocumentsReportSMS(), "*/15 * * * *", TimeZoneInfo.Local);
 
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendMonthlyReportEmail(), "*/15 * * * *", TimeZoneInfo.Local);
+
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.ReserveDocuBoxLockers(), "*/10 * * * *", TimeZoneInfo.Local);
         }
     }
 }
