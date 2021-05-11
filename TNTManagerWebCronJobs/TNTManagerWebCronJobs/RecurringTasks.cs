@@ -12,6 +12,7 @@ namespace TNTManagerWebCronJobs
     public class RecurringTasks : IHangfireEmailJob
     {
         public static string DEV_PATH { get; } = "https://dev.tntsoftware.ro/";
+        public static string API_PATH { get; } = "https://api.citymanager.ro/";
 
         public static HttpClient ApiClient { get; set; }
 
@@ -99,6 +100,30 @@ namespace TNTManagerWebCronJobs
 
             var response = ApiClient.PostAsync("api/Hangfire/ReserveLockersAsync", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<string> UpdateClosedLockerDate()
+        {
+            var authHttpClient = new HttpClient()
+            {
+                BaseAddress = new Uri(API_PATH),
+                Timeout = TimeSpan.FromMinutes(3600)
+            };
+            authHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+            var authResponse = authHttpClient.PostAsync("api/authorize/token/W2naBtVkcVFF2Z2plQUJNUE93Q3ljT3FhaDVFUXU1eXlWanBtVkc", new StringContent("")).Result;
+
+            var token = await authResponse.Content.ReadAsStringAsync();
+            var httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri(API_PATH),
+                Timeout = TimeSpan.FromMinutes(3600)
+            };
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = httpClient.PostAsync("api/DocuBox/UpdateClosedLockerDate", new StringContent("")).Result;
+
+            var result = await response.Content.ReadAsStringAsync();
+            return result;
         }
     }
 }
