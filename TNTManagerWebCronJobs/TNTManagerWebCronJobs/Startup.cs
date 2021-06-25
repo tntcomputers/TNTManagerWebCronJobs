@@ -42,6 +42,8 @@ namespace TNTManagerWebCronJobs
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.ReserveDocuBoxLockers(), "*/10 * * * *", TimeZoneInfo.Local);
             
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.UpdateClosedLockerDate(), "*/2 * * * *", TimeZoneInfo.Local);
+
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendWeeklySalesReportEmail(), Cron.Weekly(DayOfWeek.Monday, 8), TimeZoneInfo.Local);
         }
     }
 }

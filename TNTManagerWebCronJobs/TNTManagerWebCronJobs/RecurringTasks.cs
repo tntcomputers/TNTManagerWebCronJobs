@@ -125,5 +125,13 @@ namespace TNTManagerWebCronJobs
             var result = await response.Content.ReadAsStringAsync();
             return result;
         }
+
+        public async Task<string> SendWeeklySalesReportEmail()
+        {
+            InitializeHTTPClient();
+
+            var response = ApiClient.PostAsync("api/Hangfire/SendWeeklySalesReport", new StringContent("")).Result;
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 }
