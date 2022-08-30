@@ -32,7 +32,11 @@ namespace TNTManagerWebCronJobs
         
         [Queue("emails")]
         Task<string> UpdateClosedLockerDate();
+
         [Queue("emails")]
         Task<string> SendWeeklySalesReportEmail();
+
+        [Queue("emails")]
+        Task<string> SyncROeFactura();
     }
 }

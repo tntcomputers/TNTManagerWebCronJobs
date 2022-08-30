@@ -29,11 +29,12 @@ namespace TNTManagerWebCronJobs
             app.UseHangfireDashboard();
 
             //Autofac will instantiate the class implementing this interface. The dashboard knows about the interface and can thus display the job properly.
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SyncROeFactura(), "58 * * * *", TimeZoneInfo.Local);
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendDailyReport(), "0 7 * * 1-5", TimeZoneInfo.Local);
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendWeeklyReport(), "0 7 * * 1", TimeZoneInfo.Local);
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendReminders(), "0 * * * *", TimeZoneInfo.Local);
 
-            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendAlerts(), "2 0 * * *", TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendAlerts(), "0 11 * * *", TimeZoneInfo.Local);
 
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendMonthlyDocumentsReportSMS(), "*/15 * * * *", TimeZoneInfo.Local);
 

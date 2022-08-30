@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="E:\CronJob\TNTManagerWebCronJobs\TNTManagerWebCronJobs\obj\Release\Package\PackageTmp" />
+  <IisApp path="D:\proiecte\tntmanager\CityManager\TNTManagerWebCronJobs\TNTManagerWebCronJobs\TNTManagerWebCronJobs\obj\Release\Package\PackageTmp" />
+  <setAcl path="D:\proiecte\tntmanager\CityManager\TNTManagerWebCronJobs\TNTManagerWebCronJobs\TNTManagerWebCronJobs\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\proiecte\tntmanager\CityManager\TNTManagerWebCronJobs\TNTManagerWebCronJobs\TNTManagerWebCronJobs\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>
