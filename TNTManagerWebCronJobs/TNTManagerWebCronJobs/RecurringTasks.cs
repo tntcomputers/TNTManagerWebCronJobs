@@ -11,8 +11,8 @@ namespace TNTManagerWebCronJobs
 {
     public class RecurringTasks : IHangfireEmailJob
     {
-        //public static string DEV_PATH { get; } = "https://dev.tntsoftware.ro/";
-        public static string DEV_PATH { get; } = "http://localhost:64912/";
+        public static string DEV_PATH { get; } = "https://dev.tntsoftware.ro/";
+        //public static string DEV_PATH { get; } = "http://localhost:64912/";
         public static string API_PATH { get; } = "https://api.citymanager.ro/";
 
         public static HttpClient ApiClient { get; set; }

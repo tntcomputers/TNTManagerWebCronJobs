@@ -34,7 +34,7 @@ namespace TNTManagerWebCronJobs
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendWeeklyReport(), "0 8 * * 1", TimeZoneInfo.Local);
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendReminders(), "0 * * * *", TimeZoneInfo.Local);
 
-            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendAlerts(), "10 10 * * *", TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendAlerts(), "4 11 * * *", TimeZoneInfo.Local);
 
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendMonthlyDocumentsReportSMS(), "0 9 1-5 * *", TimeZoneInfo.Local);
 
