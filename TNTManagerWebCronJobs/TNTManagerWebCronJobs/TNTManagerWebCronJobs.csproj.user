@@ -8,8 +8,9 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
-    <NameOfLastUsedPublishProfile>K:\proiecte\tnt\citymanager\TNTManagerWebCronJobs\TNTManagerWebCronJobs\TNTManagerWebCronJobs\Properties\PublishProfiles\Default Settings1.pubxml</NameOfLastUsedPublishProfile>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <NameOfLastUsedPublishProfile>C:\Users\Administrator\Documents\GitHub\TNTManagerWebCronJobs\TNTManagerWebCronJobs\TNTManagerWebCronJobs\Properties\PublishProfiles\cron.portalbn.ro.pubxml</NameOfLastUsedPublishProfile>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

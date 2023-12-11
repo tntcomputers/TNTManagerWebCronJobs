@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
@@ -11,16 +12,16 @@ namespace TNTManagerWebCronJobs
 {
     public class RecurringTasks : IHangfireEmailJob
     {
-        public static string DEV_PATH { get; } = "https://dev.tntsoftware.ro/";
+        public static string APP_PATH { get; } = ConfigurationManager.AppSettings["appUrl"];
         //public static string DEV_PATH { get; } = "http://localhost:64912/";
-        public static string API_PATH { get; } = "https://api.citymanager.ro/";
+        public static string API_PATH { get; } = ConfigurationManager.AppSettings["apiUrl"];
 
         public static HttpClient ApiClient { get; set; }
 
         private static void InitializeHTTPClient()
         {
             ApiClient = new HttpClient();
-            ApiClient.BaseAddress = new Uri(DEV_PATH);
+            ApiClient.BaseAddress = new Uri(APP_PATH);
             ApiClient.DefaultRequestHeaders.Accept.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //ApiClient.DefaultRequestHeaders.Add("Authorization", "19693aa9131fbcee37dbbdd759b72a12");
@@ -32,26 +33,6 @@ namespace TNTManagerWebCronJobs
         public async Task<string> SendDailyReport()
         {
             InitializeHTTPClient();
-
-            //using (SqlCommand cmd = new SqlCommand())
-            //{
-            //    cmd.Connection = new SqlConnection(ConfigurareConexiuneBD.CS);
-            //    cmd.Connection.Open();
-            //    cmd.CommandText = query;
-            //    //List<AlertaParametriValori> parametriValori = sablon.AlertaParametriValori.ToList();
-            //    //foreach (var p in tip.AlertaParametri)
-            //    //{
-            //    //    cmd.Parameters.AddWithValue(p.Denumire.Replace(' ', '_'), parametriValori.FirstOrDefault(valoare => valoare.ParametruId == p.Id).Valoare);
-            //    //}
-
-
-            //    SqlDataReader reader = cmd.ExecuteReader();
-            //    while (reader.Read())
-            //    { }
-            //}
-
-
-
             var response = ApiClient.PostAsync("api/Hangfire/SendDailyReport", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
         }
@@ -105,7 +86,39 @@ namespace TNTManagerWebCronJobs
             return await response.Content.ReadAsStringAsync();
         }
 
+        public async Task<string> ReserveDocuBoxLockersV2()
+        {
+            InitializeHTTPClient();
+
+            var response = ApiClient.PostAsync("api/Hangfire/ReserveLockersAsync", new StringContent("")).Result;
+            return await response.Content.ReadAsStringAsync();
+        }
+
         public async Task<string> UpdateClosedLockerDate()
+        {
+            var authHttpClient = new HttpClient()
+            {
+                BaseAddress = new Uri(API_PATH),
+                Timeout = TimeSpan.FromMinutes(3600)
+            };
+            authHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+            var authResponse = authHttpClient.PostAsync("api/authorize/token/W2naBtVkcVFF2Z2plQUJNUE93Q3ljT3FhaDVFUXU1eXlWanBtVkc", new StringContent("")).Result;
+
+            var token = await authResponse.Content.ReadAsStringAsync();
+            var httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri(API_PATH),
+                Timeout = TimeSpan.FromMinutes(3600)
+            };
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = httpClient.PostAsync("api/DocuBox/UpdateClosedLockerDate", new StringContent("")).Result;
+
+            var result = await response.Content.ReadAsStringAsync();
+            return result;
+        }
+
+        public async Task<string> UpdateClosedLockerDateV2()
         {
             var authHttpClient = new HttpClient()
             {

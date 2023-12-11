@@ -29,9 +29,15 @@ namespace TNTManagerWebCronJobs
 
         [Queue("emails")]
         Task<string> ReserveDocuBoxLockers();
-        
+
+        [Queue("emails")]
+        Task<string> ReserveDocuBoxLockersV2();
+
         [Queue("emails")]
         Task<string> UpdateClosedLockerDate();
+
+        [Queue("emails")]
+        Task<string> UpdateClosedLockerDateV2();
 
         [Queue("emails")]
         Task<string> SendWeeklySalesReportEmail();

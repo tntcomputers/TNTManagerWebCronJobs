@@ -187,6 +187,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\cron.portalbn.ro.pubxml" />
     <None Include="Properties\PublishProfiles\cron.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings1.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -220,7 +221,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web - main.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
@@ -284,11 +285,25 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-    <None Include="Web.Debug.config">
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web - bn.config" />
+    <Content Include="Web - bn.Debug.config">
+      <DependentUpon>Web - bn.config</DependentUpon>
+    </Content>
+    <Content Include="Web - bn.Release.config">
+      <DependentUpon>Web - bn.config</DependentUpon>
+    </Content>
+    <None Include="Web - main.Debug.config">
+      <DependentUpon>Web - main.config</DependentUpon>
     </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <None Include="Web - main.Release.config">
+      <DependentUpon>Web - main.config</DependentUpon>
     </None>
   </ItemGroup>
   <PropertyGroup>
