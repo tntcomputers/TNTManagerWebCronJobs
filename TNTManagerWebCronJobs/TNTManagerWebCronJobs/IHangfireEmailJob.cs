@@ -44,5 +44,8 @@ namespace TNTManagerWebCronJobs
 
         [Queue("emails")]
         Task<string> SyncROeFactura();
+
+        [Queue("emails")]
+        Task<string> GetBTTransactions();
     }
 }

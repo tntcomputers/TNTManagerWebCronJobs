@@ -60,7 +60,7 @@ namespace TNTManagerWebCronJobs
 
             if (jobs.Contains("alerts"))
             {
-                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendAlerts(), "4 11 * * *", TimeZoneInfo.Local);
+                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendAlerts(), "28 11 * * *", TimeZoneInfo.Local);
             }
 
             if (jobs.Contains("reminders"))
@@ -71,6 +71,11 @@ namespace TNTManagerWebCronJobs
             if (jobs.Contains("sales"))
             {
                 RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendWeeklySalesReportEmail(), Cron.Weekly(DayOfWeek.Monday, 8), TimeZoneInfo.Local);
+            }
+
+            if (jobs.Contains("bt"))
+            {
+                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.GetBTTransactions(), "12 7,18 * * *", TimeZoneInfo.Local);
             }
         }
     }
