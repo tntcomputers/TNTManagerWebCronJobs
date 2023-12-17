@@ -187,6 +187,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\cron.portalbn.ro.pubxml" />
     <None Include="Properties\PublishProfiles\cron.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings1.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -222,6 +223,13 @@
     <Content Include="Web - main.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -269,19 +277,19 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Web - bn.config" />
     <Content Include="Web - bn.Debug.config">
       <DependentUpon>Web - bn.config</DependentUpon>
     </Content>
     <Content Include="Web - bn.Release.config">
       <DependentUpon>Web - bn.config</DependentUpon>
+    </Content>
+    <Content Include="Web - sm.config" />
+    <Content Include="Web - sm.Debug.config">
+      <DependentUpon>Web - sm.config</DependentUpon>
+    </Content>
+    <Content Include="Web - sm.Release.config">
+      <DependentUpon>Web - sm.config</DependentUpon>
     </Content>
     <None Include="Web - main.Debug.config">
       <DependentUpon>Web - main.config</DependentUpon>
