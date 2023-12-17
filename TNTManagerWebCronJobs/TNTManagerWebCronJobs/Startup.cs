@@ -78,6 +78,16 @@ namespace TNTManagerWebCronJobs
             {
                 RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.GetBTTransactions(), "12 7,18 * * *", TimeZoneInfo.Local);
             }
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendWeeklySalesReportEmail(), Cron.Weekly(DayOfWeek.Monday, 8), TimeZoneInfo.Local);
+
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendProjectActivityDeadlineReminderAsync(), Cron.Daily(8), TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendProjectIssueDeadlineReminderAsync(), Cron.Daily(8), TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendDailyDigestAsync(), Cron.Daily(8), TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendUnassignedResponsabilitiesReminderAsync(), Cron.Weekly(DayOfWeek.Monday, 8), TimeZoneInfo.Local);
+
+            RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendContractActivitiesDeadlineReminderAsync(), Cron.Daily(8), TimeZoneInfo.Local);
+
+
         }
     }
 }

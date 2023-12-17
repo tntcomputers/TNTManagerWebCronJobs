@@ -47,5 +47,18 @@ namespace TNTManagerWebCronJobs
 
         [Queue("emails")]
         Task<string> GetBTTransactions();
+        Task<string> SendUnassignedResponsabilitiesReminderAsync();
+
+        [Queue("emails")]
+        Task<string> SendDailyDigestAsync();
+
+        [Queue("emails")]
+        Task<string> SendProjectIssueDeadlineReminderAsync();
+
+        [Queue("emails")]
+        Task<string> SendProjectActivityDeadlineReminderAsync();
+
+        [Queue("emails")]
+        Task<string> SendContractActivitiesDeadlineReminderAsync();
     }
 }
