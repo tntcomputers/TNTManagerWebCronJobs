@@ -25,7 +25,7 @@ namespace TNTManagerWebCronJobs
             ApiClient.DefaultRequestHeaders.Accept.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //ApiClient.DefaultRequestHeaders.Add("Authorization", "19693aa9131fbcee37dbbdd759b72a12");
-            ApiClient.DefaultRequestHeaders.Add("Authorization", "87e7db6abf92a4a5ac1a5f2482893603");
+            //ApiClient.DefaultRequestHeaders.Add("Authorization", "87e7db6abf92a4a5ac1a5f2482893603");
             
             ApiClient.Timeout = TimeSpan.FromMinutes(3600);
         }
