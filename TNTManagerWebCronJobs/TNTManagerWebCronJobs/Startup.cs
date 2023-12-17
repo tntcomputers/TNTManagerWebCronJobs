@@ -61,6 +61,7 @@ namespace TNTManagerWebCronJobs
             if (jobs.Contains("alerts"))
             {
                 RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendAlerts(), "28 11 * * *", TimeZoneInfo.Local);
+                //RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendAlerts(), "* * * * *", TimeZoneInfo.Local);
             }
 
             if (jobs.Contains("reminders"))
