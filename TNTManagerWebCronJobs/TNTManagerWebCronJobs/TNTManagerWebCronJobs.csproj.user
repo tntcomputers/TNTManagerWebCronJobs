@@ -8,8 +8,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
-    <NameOfLastUsedPublishProfile>C:\Users\Administrator\Documents\GitHub\TNTManagerWebCronJobs\TNTManagerWebCronJobs\TNTManagerWebCronJobs\Properties\PublishProfiles\cron.portalbn.ro.pubxml</NameOfLastUsedPublishProfile>
+    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
+    <NameOfLastUsedPublishProfile>C:\Users\Administrator\Documents\GitHub\TNTManagerWebCronJobs\TNTManagerWebCronJobs\TNTManagerWebCronJobs\Properties\PublishProfiles\cron.primaria-sighet.ro.pubxml</NameOfLastUsedPublishProfile>
     <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
