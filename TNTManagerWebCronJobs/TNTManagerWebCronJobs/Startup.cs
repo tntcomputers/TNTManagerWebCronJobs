@@ -48,14 +48,14 @@ namespace TNTManagerWebCronJobs
 
             if (jobs.Contains("docubox"))
             {
-                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.ReserveDocuBoxLockers(), "*/10 * * * *", TimeZoneInfo.Local);
-                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.UpdateClosedLockerDate(), "*/2 * * * *", TimeZoneInfo.Local);
+                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.ReserveDocuBoxLockers(), "* * * * *", TimeZoneInfo.Local);
+                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.UpdateClosedLockerDate(), "*/3 * * * *", TimeZoneInfo.Local);
             }
 
             if (jobs.Contains("docuboxV2"))
             {
                 RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.ReserveDocuBoxLockersV2(), "*/10 * * * *", TimeZoneInfo.Local);
-                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.UpdateClosedLockerDateV2(), "*/2 * * * *", TimeZoneInfo.Local);
+                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.UpdateClosedLockerDateV2(), "* * * * *", TimeZoneInfo.Local);
             }
 
             if (jobs.Contains("alerts"))
