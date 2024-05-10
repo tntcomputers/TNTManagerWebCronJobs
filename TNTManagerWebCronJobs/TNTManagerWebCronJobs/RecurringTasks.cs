@@ -15,7 +15,8 @@ namespace TNTManagerWebCronJobs
         public static string APP_PATH { get; } = ConfigurationManager.AppSettings["appUrl"];
         //public static string DEV_PATH { get; } = "http://localhost:64912/";
         public static string API_PATH { get; } = ConfigurationManager.AppSettings["apiUrl"];
-       
+        public static string APP_Authorization { get; } = ConfigurationManager.AppSettings["appAuthorization"];
+
         public static HttpClient ApiClient { get; set; }
 
         private static void InitializeHTTPClient()
@@ -26,7 +27,7 @@ namespace TNTManagerWebCronJobs
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //ApiClient.DefaultRequestHeaders.Add("Authorization", "19693aa9131fbcee37dbbdd759b72a12");
             //ApiClient.DefaultRequestHeaders.Add("Authorization", "87e7db6abf92a4a5ac1a5f2482893603");
-            
+            ApiClient.DefaultRequestHeaders.Add("Authorization", APP_Authorization);
             ApiClient.Timeout = TimeSpan.FromMinutes(3600);
         }
 
