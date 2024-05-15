@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -15,7 +16,8 @@ namespace TNTManagerWebCronJobs
         public static string APP_PATH { get; } = ConfigurationManager.AppSettings["appUrl"];
         //public static string DEV_PATH { get; } = "http://localhost:64912/";
         public static string API_PATH { get; } = ConfigurationManager.AppSettings["apiUrl"];
-       
+        public static string APICometex_PATH { get; } = ConfigurationManager.AppSettings["apiCometexUrl"];
+        
         public static HttpClient ApiClient { get; set; }
 
         private static void InitializeHTTPClient()
@@ -81,7 +83,7 @@ namespace TNTManagerWebCronJobs
         public async Task<string> ReserveDocuBoxLockers()
         {
             InitializeHTTPClient();
-
+            ApiClient.DefaultRequestHeaders.Add("Authorization", "87e7db6abf92a4a5ac1a5f2482893603");
             var response = ApiClient.PostAsync("api/Hangfire/ReserveLockersAsync", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
         }
@@ -158,6 +160,18 @@ namespace TNTManagerWebCronJobs
             return await response.Content.ReadAsStringAsync();
         }
 
+        public async Task<string> SyncROeFacturaCometex()
+        {
+            ApiClient = new HttpClient();
+            ApiClient.BaseAddress = new Uri(APICometex_PATH);
+            ApiClient.DefaultRequestHeaders.Accept.Clear();
+            ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            ApiClient.Timeout = TimeSpan.FromMinutes(3600);
+            var response = ApiClient.PostAsync("api/ANAF/SyncStatusRequests/", new StringContent("")).Result;
+            return await response.Content.ReadAsStringAsync();
+        }
+
         public async Task<string> GetBTTransactions()
         {
             ApiClient = new HttpClient();
@@ -211,6 +225,54 @@ namespace TNTManagerWebCronJobs
             InitializeHTTPClient();
 
             var response = ApiClient.PostAsync("api/Hangfire/SendContractActivitiesDeadlineReminder", new StringContent("")).Result;
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<string> BNRFxRatesLast10Days()
+        {
+            var authHttpClient = new HttpClient()
+            {
+                BaseAddress = new Uri(API_PATH),
+                Timeout = TimeSpan.FromMinutes(3600)
+            };
+            authHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+            var authResponse = authHttpClient.PostAsync("api/authorize/token/W2naBtVkcVFF2Z2plQUJNUE93Q3ljT3FhaDVFUXU1eXlWanBtVkc", new StringContent("")).Result;
+
+            var token = await authResponse.Content.ReadAsStringAsync();
+            var httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri(API_PATH),
+                Timeout = TimeSpan.FromMinutes(3600)
+            };
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = httpClient.GetAsync("api/BNRFxRates/Last10Days").Result;
+
+            var result = await response.Content.ReadAsStringAsync();
+            return result;
+        }
+
+        public async Task<string> BNRFxRatesLast10DaysCometex()
+        {
+            ApiClient = new HttpClient();
+            ApiClient.BaseAddress = new Uri(APICometex_PATH);
+            //ApiClient.DefaultRequestHeaders.Accept.Clear();
+            //ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            ApiClient.Timeout = TimeSpan.FromMinutes(3600);
+            var response = ApiClient.GetAsync("api/BNRFxRates/Last10Days").Result;
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<string> CleanTempAnunturiFiles()
+        {
+            ApiClient = new HttpClient();
+            ApiClient.BaseAddress = new Uri(APICometex_PATH);
+            //ApiClient.DefaultRequestHeaders.Accept.Clear();
+            //ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            ApiClient.Timeout = TimeSpan.FromMinutes(3600);
+            var response = ApiClient.GetAsync("api/BNRFxRates/Last10Days").Result;
             return await response.Content.ReadAsStringAsync();
         }
     }

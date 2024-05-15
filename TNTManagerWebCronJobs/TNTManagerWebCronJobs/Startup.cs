@@ -36,6 +36,7 @@ namespace TNTManagerWebCronJobs
             if (jobs.Contains("roefactura"))
             {
                 RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SyncROeFactura(), "10 7-18 * * 1-5", TimeZoneInfo.Local);
+                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SyncROeFacturaCometex(), "40 7-16 * * *", TimeZoneInfo.Local);
             }
 
             if (jobs.Contains("registraturaReports"))
@@ -78,6 +79,18 @@ namespace TNTManagerWebCronJobs
             {
                 RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.GetBTTransactions(), "12 7,18 * * *", TimeZoneInfo.Local);
             }
+
+            if (jobs.Contains("bnr"))
+            {
+                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.BNRFxRatesLast10Days(), "5 13-23 * * 1-6", TimeZoneInfo.Local);
+                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.BNRFxRatesLast10DaysCometex(), "15 13-17 * * 1-5", TimeZoneInfo.Local);
+            }
+
+            if (jobs.Contains("clean"))
+            {
+                RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.CleanTempAnunturiFiles(), "*/3 1-23 * * 1-6", TimeZoneInfo.Local);
+            }
+
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendWeeklySalesReportEmail(), Cron.Weekly(DayOfWeek.Monday, 8), TimeZoneInfo.Local);
 
             RecurringJob.AddOrUpdate<IHangfireEmailJob>((x) => x.SendProjectActivityDeadlineReminderAsync(), Cron.Daily(8), TimeZoneInfo.Local);

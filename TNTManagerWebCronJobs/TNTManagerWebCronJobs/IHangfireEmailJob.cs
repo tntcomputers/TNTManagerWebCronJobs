@@ -46,6 +46,15 @@ namespace TNTManagerWebCronJobs
         Task<string> SyncROeFactura();
 
         [Queue("emails")]
+        Task<string> SyncROeFacturaCometex();
+
+        [Queue("emails")]
+        Task<string> BNRFxRatesLast10Days();
+
+        [Queue("emails")]
+        Task<string> BNRFxRatesLast10DaysCometex();
+
+        [Queue("emails")]
         Task<string> GetBTTransactions();
         Task<string> SendUnassignedResponsabilitiesReminderAsync();
 
@@ -60,5 +69,8 @@ namespace TNTManagerWebCronJobs
 
         [Queue("emails")]
         Task<string> SendContractActivitiesDeadlineReminderAsync();
+
+        [Queue("emails")]
+        Task<string> CleanTempAnunturiFiles();
     }
 }
