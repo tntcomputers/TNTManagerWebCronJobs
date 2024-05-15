@@ -17,7 +17,8 @@ namespace TNTManagerWebCronJobs
         //public static string DEV_PATH { get; } = "http://localhost:64912/";
         public static string API_PATH { get; } = ConfigurationManager.AppSettings["apiUrl"];
         public static string APICometex_PATH { get; } = ConfigurationManager.AppSettings["apiCometexUrl"];
-        
+        public static string APP_Authorization { get; } = ConfigurationManager.AppSettings["appAuthorization"];
+
         public static HttpClient ApiClient { get; set; }
 
         private static void InitializeHTTPClient()
@@ -35,6 +36,8 @@ namespace TNTManagerWebCronJobs
         public async Task<string> SendDailyReport()
         {
             InitializeHTTPClient();
+            ApiClient.DefaultRequestHeaders.Add("Authorization", APP_Authorization);
+            
             var response = ApiClient.PostAsync("api/Hangfire/SendDailyReport", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
         }
@@ -66,6 +69,7 @@ namespace TNTManagerWebCronJobs
         public async Task<string> SendMonthlyDocumentsReportSMS()
         {
             InitializeHTTPClient();
+            ApiClient.DefaultRequestHeaders.Add("Authorization", APP_Authorization);
 
             var response = ApiClient.PostAsync("api/Hangfire/SendMonthlyDocumentsReportSMS", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
@@ -74,6 +78,7 @@ namespace TNTManagerWebCronJobs
         public async Task<string> SendMonthlyReportEmail()
         {
             InitializeHTTPClient();
+            ApiClient.DefaultRequestHeaders.Add("Authorization", APP_Authorization);
 
             var response = ApiClient.PostAsync("api/Hangfire/SendMonthlyReportEmail", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
@@ -91,7 +96,7 @@ namespace TNTManagerWebCronJobs
         public async Task<string> ReserveDocuBoxLockersV2()
         {
             InitializeHTTPClient();
-
+            ApiClient.DefaultRequestHeaders.Add("Authorization", "87e7db6abf92a4a5ac1a5f2482893603");
             var response = ApiClient.PostAsync("api/Hangfire/ReserveLockersAsync", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
         }
@@ -147,6 +152,7 @@ namespace TNTManagerWebCronJobs
         public async Task<string> SendWeeklySalesReportEmail()
         {
             InitializeHTTPClient();
+            ApiClient.DefaultRequestHeaders.Add("Authorization", APP_Authorization);
 
             var response = ApiClient.PostAsync("api/Hangfire/SendWeeklySalesReport", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
@@ -155,6 +161,7 @@ namespace TNTManagerWebCronJobs
         public async Task<string> SyncROeFactura()
         {
             InitializeHTTPClient();
+            ApiClient.DefaultRequestHeaders.Add("Authorization", APP_Authorization);
 
             var response = ApiClient.PostAsync("api/Hangfire/SyncROeFactura", new StringContent("")).Result;
             return await response.Content.ReadAsStringAsync();
